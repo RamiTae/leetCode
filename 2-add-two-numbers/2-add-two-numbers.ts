@@ -139,9 +139,9 @@ function calculateNode(listSum: ListNode | null, carry: number): ListNode {
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
     const listSum = sumNode(l1,l2);
-    console.log(listSum);
+    // console.log(listSum);
     const listResult = calculateNode(listSum, 0);
-    console.log(listResult);
+    // console.log(listResult);
     
     return listResult;
 };
