@@ -106,42 +106,55 @@ num:1, carry:0
  * }
  */
 
-function sumNode(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-    if(!l1 && !l2) {
-        return null;
-    }
+class ListNode {
+  val: number;
+  next: ListNode | null;
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+}
 
-    let sum: number = 0;
-    if(l1) {
-        sum += l1.val;
-    }
-    if(l2) {
-        sum += l2.val;
-    }
-    
-    return new ListNode(sum, sumNode(l1?.next || null, l2?.next || null));
+function sumNode(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  if (!l1 && !l2) {
+    return null;
+  }
+
+  let sum: number = 0;
+  if (l1) {
+    sum += l1.val;
+  }
+  if (l2) {
+    sum += l2.val;
+  }
+
+  return new ListNode(sum, sumNode(l1?.next || null, l2?.next || null));
 }
 
 function calculateNode(listSum: ListNode | null, carry: number): ListNode {
-    if(!listSum && carry === 0) {
-        return null;
-    }
-    
-    let num: number = (listSum?.val || 0) + carry;
-    let nextCarry: number = 0;
-    if(num >= 10) {
-        num -= 10;
-        nextCarry = 1;
-    }
-    
-    return new ListNode(num, calculateNode(listSum?.next || null, nextCarry));
+  if (!listSum && carry === 0) {
+    return null;
+  }
+
+  let num: number = (listSum?.val || 0) + carry;
+  let nextCarry: number = 0;
+  if (num >= 10) {
+    num -= 10;
+    nextCarry = 1;
+  }
+
+  return new ListNode(num, calculateNode(listSum?.next || null, nextCarry));
 }
 
-function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-    const listSum = sumNode(l1,l2);
-    // console.log(listSum);
-    const listResult = calculateNode(listSum, 0);
-    // console.log(listResult);
-    
-    return listResult;
-};
+// 채점에 사용하는 함수
+function addTwoNumbers(
+  l1: ListNode | null,
+  l2: ListNode | null
+): ListNode | null {
+  const listSum = sumNode(l1, l2);
+  // console.log(listSum);
+  const listResult = calculateNode(listSum, 0);
+  // console.log(listResult);
+
+  return listResult;
+}
