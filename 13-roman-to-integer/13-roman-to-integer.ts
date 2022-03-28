@@ -40,34 +40,41 @@ const romanMap: Object = {
 
 const canNegaticeNums: string[] = ["I", "X", "C"];
 
+function getSign(romanNum: string, nextRomanNum: string): number {
+  let sign: number = 1;
+  switch (romanNum) {
+    case "I": {
+      if (nextRomanNum === "V" || nextRomanNum === "X") {
+        sign = -1;
+      }
+      break;
+    }
+    case "X": {
+      if (nextRomanNum === "L" || nextRomanNum === "C") {
+        sign = -1;
+      }
+      break;
+    }
+    case "C": {
+      if (nextRomanNum === "D" || nextRomanNum === "M") {
+        sign = -1;
+      }
+      break;
+    }
+  }
+  return sign;
+}
+
 // 채점에 사용하는 함수
 function romanToInt(s: string): number {
   const romanArray: string[] = [...s];
   return romanArray.reduce(
     (sum: number, romanNum: string, idx: number): number => {
       let integerNum: number = romanMap[romanNum];
-      const nextNum: string | undefined = romanArray[idx + 1];
-      if (nextNum && canNegaticeNums.includes(romanNum)) {
-        switch (romanNum) {
-          case "I": {
-            if (nextNum === "V" || nextNum === "X") {
-              integerNum *= -1;
-            }
-            break;
-          }
-          case "X": {
-            if (nextNum === "L" || nextNum === "C") {
-              integerNum *= -1;
-            }
-            break;
-          }
-          case "C": {
-            if (nextNum === "D" || nextNum === "M") {
-              integerNum *= -1;
-            }
-            break;
-          }
-        }
+      const nextRomanNum: string | undefined = romanArray[idx + 1];
+
+      if (nextRomanNum && canNegaticeNums.includes(romanNum)) {
+        integerNum *= getSign(romanNum, nextRomanNum);
       }
 
       return sum + integerNum;
