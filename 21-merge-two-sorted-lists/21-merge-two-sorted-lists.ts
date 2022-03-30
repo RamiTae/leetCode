@@ -25,7 +25,6 @@ function mergeTwoLists(
 
   if (nodeVal1 < nodeVal2) {
     return new ListNode(nodeVal1, mergeTwoLists(list1.next, list2));
-  } else {
-    return new ListNode(nodeVal2, mergeTwoLists(list1, list2.next));
   }
+  return new ListNode(nodeVal2, mergeTwoLists(list1, list2.next));
 }
