@@ -1,27 +1,27 @@
 function isValid(s: string): boolean {
   let startedBracket: string[] = [];
-  
-  for(let i:number = 0; i < s.length; i++) {
+
+  for (let i: number = 0; i < s.length; i++) {
     const character: string = s[i];
-    if(character === '(' || character === '{' || character === '[') {
+    if (character === "(" || character === "{" || character === "[") {
       startedBracket.push(character);
     } else {
       const lastBracket: string = startedBracket.pop();
-      switch(character) {
-        case ')': {
-          if(lastBracket !== '(') {
+      switch (character) {
+        case ")": {
+          if (lastBracket !== "(") {
             return false;
           }
           break;
         }
-        case '}': {
-          if(lastBracket !== '{') {
+        case "}": {
+          if (lastBracket !== "{") {
             return false;
           }
           break;
         }
-        case ']': {
-          if(lastBracket !== '[') {
+        case "]": {
+          if (lastBracket !== "[") {
             return false;
           }
           break;
@@ -30,10 +30,10 @@ function isValid(s: string): boolean {
       }
     }
   }
-  
-  if(startedBracket.length) {
+
+  if (startedBracket.length) {
     return false;
   }
 
   return true;
-};
+}
