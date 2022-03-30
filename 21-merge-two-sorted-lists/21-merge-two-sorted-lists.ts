@@ -23,11 +23,9 @@ function mergeTwoLists(
   const nodeVal1: number = list1.val;
   const nodeVal2: number = list2.val;
 
-  let result: ListNode;
   if (nodeVal1 < nodeVal2) {
-    result = new ListNode(nodeVal1, mergeTwoLists(list1.next, list2));
+    return new ListNode(nodeVal1, mergeTwoLists(list1.next, list2));
   } else {
-    result = new ListNode(nodeVal2, mergeTwoLists(list1, list2.next));
+    return new ListNode(nodeVal2, mergeTwoLists(list1, list2.next));
   }
-  return result;
 }
