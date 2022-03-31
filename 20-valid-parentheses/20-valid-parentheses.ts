@@ -1,12 +1,12 @@
 function isValid(s: string): boolean {
-  let startedBracket: string[] = [];
+  let startedBrackets: string[] = [];
 
   for (let i: number = 0; i < s.length; i++) {
     const character: string = s[i];
     if (character === "(" || character === "{" || character === "[") {
-      startedBracket.push(character);
+      startedBrackets.push(character);
     } else {
-      const lastBracket: string = startedBracket.pop();
+      const lastBracket: string = startedBrackets.pop();
       switch (character) {
         case ")": {
           if (lastBracket !== "(") {
@@ -31,7 +31,7 @@ function isValid(s: string): boolean {
     }
   }
 
-  if (startedBracket.length) {
+  if (startedBrackets.length) {
     return false;
   }
 
