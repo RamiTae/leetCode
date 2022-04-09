@@ -1,9 +1,9 @@
-function twoSum(nums: number[], target: number, startIdx: number = 0): number[] {
-  for(let idx:number = 1; idx < nums.length; idx++) {
-    if(nums[0] + nums[idx] === target) {
-      return [startIdx, startIdx + idx];
+function twoSum(nums: number[], target: number): number[] {
+  for (let i: number = 0; i < nums.length; i++) {
+    for (let j: number = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        return [i, j];
+      }
     }
   }
-  nums.shift();
-  return twoSum(nums, target, startIdx + 1);
-};
+}
