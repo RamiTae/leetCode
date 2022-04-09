@@ -1,9 +1,13 @@
 function twoSum(nums: number[], target: number): number[] {
-  for (let i: number = 0; i < nums.length; i++) {
-    for (let j: number = i + 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target) {
-        return [i, j];
-      }
+  const numMap: { [num: number]: number } = {};
+  numMap[nums[0]] = 0;
+
+  for (let idx: number = 1; idx < nums.length; idx++) {
+    const num = nums[idx];
+    const firstIdx: number | undefined = numMap[target - num];
+    if (firstIdx !== undefined) {
+      return [firstIdx, idx];
     }
+    numMap[num] = idx;
   }
 }
